@@ -1,19 +1,15 @@
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/react';
-import { PropsWithChildren } from 'react';
+import Navigation from "@/Components/GuestNavigation";
+import { ReactNode } from "react";
 
-export default function Guest({ children }: PropsWithChildren) {
+export default function GuestLayout({ children }: {children: ReactNode}) {
     return (
-        <div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0">
-            <div>
-                <Link href="/">
-                    <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
-                </Link>
+        <main className="w-full flex flex-col justify-start items-start gap-3">
+            <div className="w-full p-3">
+                <Navigation />
             </div>
-
-            <div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg">
+            <div className="w-full">
                 {children}
             </div>
-        </div>
-    );
+        </main>
+    )
 }
