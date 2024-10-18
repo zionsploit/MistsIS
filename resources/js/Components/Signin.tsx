@@ -21,7 +21,7 @@ export default function SignIn() {
                 </Label>
                 <Input
                     type='password'
-                    id="username"
+                    id="password"
                     className="w-full"
                 />
             </div>
