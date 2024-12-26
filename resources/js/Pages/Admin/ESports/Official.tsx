@@ -1,13 +1,19 @@
+import AddESportsOfficer from "@/Components/AddESportsOfficer";
+import ESportsOfficerList from "@/Components/ESportsOfficerList";
 import Divider from "@/Components/modules/Divider";
-import { Button } from "@/Components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogPortal, DialogTitle, DialogTrigger } from "@/Components/ui/dialog";
-import { Input } from "@/Components/ui/input";
-import { Label } from "@/Components/ui/label";
 import { Table, TableBody, TableCaption, TableHead, TableHeader, TableRow } from "@/Components/ui/table";
+import { IEsportsOfficer } from "@/Interface/ESports";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Head } from "@inertiajs/react";
+import { useEffect, useState } from "react";
 
-export default function () {
+export default function ({ requestData }: any) {
+    const data = requestData as IEsportsOfficer[]
+    const [officerData, setOfficerData] = useState<IEsportsOfficer[]>([])
+
+    useEffect(() => {
+        setOfficerData(data)
+    }, [data])
 
     return <>
         <Head title="Officials" />
@@ -16,35 +22,7 @@ export default function () {
                 <h1 className="font-bold text-2xl uppercase">E-Sports Officials</h1>
                 <Divider />
                 <div className="float-end">
-                    <Dialog>
-                        <DialogTrigger asChild>
-                            <Button>Add Official</Button>
-                        </DialogTrigger>
-                        <DialogPortal>
-                            <DialogContent>
-                                <DialogHeader>
-                                    <DialogTitle>Add Official</DialogTitle>
-                                </DialogHeader>
-                                <div className="space-y-5">
-                                    <div>
-                                        <Label htmlFor="fullName" className="font-medium text-md">Full Name</Label>
-                                        <Input id="fullName" />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="position" className="font-medium text-md">Position</Label>
-                                        <Input id="position" />
-                                    </div>
-                                    <div>
-                                        <Label htmlFor="fileUpload" className="font-medium text-md">Official Profile Picture</Label>
-                                        <Input type="file" id="fileUpload" />
-                                    </div>
-                                    <div className="w-full">
-                                        <Button className="w-full">Submit</Button>
-                                    </div>
-                                </div>
-                            </DialogContent>
-                        </DialogPortal>
-                    </Dialog>
+                    <AddESportsOfficer />
                 </div>
                 <Table>
                     <TableCaption>A list of all e-sports officials.</TableCaption>
@@ -57,8 +35,7 @@ export default function () {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow>
-                        </TableRow>
+                        {officerData.length > 0 ? officerData.map((officer, index) => <ESportsOfficerList key={index} officer={officer} />) : <></>}
                     </TableBody>
                 </Table>
             </div>

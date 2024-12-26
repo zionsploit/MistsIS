@@ -4,6 +4,7 @@ import { Head } from "@inertiajs/react"
 import { IconAlertHexagon } from "@tabler/icons-react"
 
 export default function () {
+
     return <>
         <Head title="Admin" />
         <AdminLayout>

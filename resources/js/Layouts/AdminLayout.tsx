@@ -2,6 +2,7 @@ import Divider from "@/Components/modules/Divider";
 import Nav from "@/Components/modules/Nav";
 import NavList from "@/Components/modules/NavList";
 import { Button } from "@/Components/ui/button";
+import { router } from "@inertiajs/react";
 import { IconBrandRedux, IconDashboard, IconDeviceGamepad2, IconInfoHexagon } from "@tabler/icons-react";
 import { ReactNode } from "react";
 
@@ -18,7 +19,7 @@ const SocioLabel = {
 
 const socioSubLinks = [
     {label: 'Events', link: '/admin/socio-cultural/events'},
-    {label: 'Officials', link: '/admin/socio-cultural/officials'},
+    {label: 'Officers', link: '/admin/socio-cultural/officers'},
 ]
 
 const ESportsLabel = {
@@ -39,6 +40,12 @@ const AnnouncementLabel = {
 
 export default function (props: {children: ReactNode}) {
 
+
+    const OnClickLogout = () => {
+        localStorage.clear()
+        router.visit('/login')
+    }
+
     return <>
         <div className="h-[100vh] flex justify-start items-start">
             <div className="h-full pr-5 pl-2 border-r-2 border-gray-500/20">
@@ -57,7 +64,7 @@ export default function (props: {children: ReactNode}) {
                         </div>
                     </div>
                     <div className="my-5">
-                        <Button className="w-full">Logout</Button>
+                        <Button onClick={OnClickLogout} className="w-full">Logout</Button>
                     </div>
                 </div>
             </div>
